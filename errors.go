@@ -1,15 +1,15 @@
 package main
 
-import "log"
+import "os"
 
 /*
  * "handle" a given error
  * note that passing `nil` to this function will NOT crash the program
  */
-func handle(err error) {
-	// if error is not nil...
+func handle(err error, state string) {
+	// if error is not nil, print it to the command line
 	if err != nil {
-		// log error and crash program
-		log.Fatal(err.Error())
+		println(state, ": ", err.Error())
+		os.Exit(1)
 	}
 }

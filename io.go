@@ -2,7 +2,20 @@ package main
 
 import (
 	"os"
+	"os/exec"
 )
+
+/*
+ * disable input buffering
+ * do not display entered characters on the screen
+ */
+func Setup() {
+	// disable input buffering
+	exec.Command("stty", "-F", "/dev/tty", "cbreak", "min", "1").Run()
+
+	// do not display entered characters on the screen
+	exec.Command("stty", "-F", "/dev/tty", "-echo").Run()
+}
 
 /*
  * usage: call this function, get a callback, invoke the callback, and a byte or error will be returned
