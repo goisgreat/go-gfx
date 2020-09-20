@@ -6,7 +6,7 @@ package main
 
 import (
     time "time"
-    gogfx "github.com/goisgreat/golang-gfx"
+    gogfx "github.com/goisgreat/go-gfx"
 )
 
 func main() {
