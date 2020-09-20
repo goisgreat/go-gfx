@@ -13,7 +13,7 @@ The X-Y coordinates of this program may be confusing. You might be wondering, "W
 ```
 would be in the top left (the first `0` you see). And this is *exactly* how this program is implemented! So, if an object as x `4` and y `4` (in a `10` by `10` matrix), it would be rendered in the middle. So if your code is:
 ```golang
-package main
+package gogfx
 
 func main() {
     point := point{

@@ -1,4 +1,4 @@
-package main
+package gogfx
 
 // list of sprites
 type Sprites []Sprite

@@ -1,4 +1,4 @@
-package main
+package gogfx
 
 // keyboard control type
 type KeyboardControl uint8

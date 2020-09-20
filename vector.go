@@ -1,4 +1,4 @@
-package main
+package gogfx
 
 // type vector
 type Vector struct {

@@ -1,4 +1,4 @@
-package main
+package gogfx
 
 const (
 	// x-y borders

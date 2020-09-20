@@ -1,4 +1,4 @@
-package main
+package gogfx
 
 // point object
 type Point struct {

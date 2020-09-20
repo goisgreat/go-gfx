@@ -1,4 +1,4 @@
-package main
+package gogfx
 
 /*
  * clear the terminal using ascii escape sequences
