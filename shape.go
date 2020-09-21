@@ -6,24 +6,23 @@ import (
 )
 
 type Shape interface {
-	Draw()
+	Draw(draw.Image)
 	Contains(Shape) bool
 }
 
 type Rect struct {
 	Start Position   // starting point
 	End   Position   // ending point
-	Image draw.Image // image to draw the rectangle on
 	Color color.RGBA // rectangle color
 }
 
 /*
  * draw a given rectangle
  */
-func (rect Rect) Draw() {
+func (rect Rect) Draw(img draw.Image) {
 	for y := rect.Start.Y; y <= rect.End.Y; y++ {
 		for x := rect.Start.X; x <= rect.End.X; x++ {
-			rect.Image.Set(x, y, rect.Color)
+			img.Set(x, y, rect.Color)
 		}
 	}
 }

@@ -1,12 +1,14 @@
 package physics
 
+import "image/draw"
+
 // list of sprites
 type Sprites []Sprite
 
 // game object
 type Sprite interface {
 	Update() (Shape, bool)
-	Draw()
+	Draw(draw.Image)
 	Init()
 	Process(Shape) bool
 }
@@ -59,10 +61,10 @@ func (sprites Sprites) Update() {
  * accept set of sprites
  * draw all sprites in set on frame
  */
-func (sprites Sprites) Draw() {
+func (sprites Sprites) Draw(image draw.Image) {
 	// iterate sprites in set
 	for idx := range sprites {
 		// draw current sprite on frame
-		sprites[idx].Draw()
+		sprites[idx].Draw(image)
 	}
 }
