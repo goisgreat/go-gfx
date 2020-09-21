@@ -11,10 +11,10 @@ type Shape interface {
 }
 
 type Rect struct {
-	Start Position
-	End   Position
-	Image draw.Image
-	Color color.RGBA
+	Start Position   // starting point
+	End   Position   // ending point
+	Image draw.Image // image to draw the rectangle on
+	Color color.RGBA // rectangle color
 }
 
 /*
@@ -28,8 +28,9 @@ func (rect Rect) Draw() {
 	}
 }
 
+/*
+ * check if a rectangle contains a given position
+ */
 func (rect *Rect) Contains(position Position) bool {
 	return false
 }
-
-var _ Shape = &Rect{}
