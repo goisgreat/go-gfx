@@ -1,7 +1,5 @@
 package physics
 
-var _ Sprite = &ControllableShape{}
-
 type ControllableShape struct {
 	KeyboardController
 	CollisionBox
