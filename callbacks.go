@@ -4,6 +4,12 @@ type Callbacks struct {
 	OnUpdate func()
 }
 
+/*
+ * use stored callbacks to update
+ */
 func (callbacks Callbacks) Update() {
-	callbacks.OnUpdate()
+	//
+	if callbacks.OnUpdate != nil {
+		callbacks.OnUpdate()
+	}
 }
