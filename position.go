@@ -1,4 +1,4 @@
-package gogfx
+package physics
 
 // position object
 type Position struct {

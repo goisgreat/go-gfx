@@ -1,4 +1,4 @@
-package gogfx
+package physics
 
 // stream object
 type EventStream struct {

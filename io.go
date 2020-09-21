@@ -1,4 +1,4 @@
-package gogfx
+package physics
 
 import (
 	"os"

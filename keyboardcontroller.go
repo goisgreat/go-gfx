@@ -1,4 +1,4 @@
-package gogfx
+package physics
 
 // keyboard control type
 type KeyboardControl uint8

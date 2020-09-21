@@ -2,7 +2,7 @@
 ## What is the *Golang Game Engine* and how do I use it?
 The golang game engine is a "physics" library for golang. Here is an example to help explain usage.
 ```golang
-package gogfx
+package physics
 
 import (
     time "time"

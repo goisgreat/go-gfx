@@ -1,4 +1,4 @@
-package gogfx
+package physics
 
 /*
  * clear the terminal using ascii escape sequences

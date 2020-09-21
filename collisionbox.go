@@ -1,12 +1,16 @@
-package gogfx
+package physics
 
 type CollisionBox struct {
-	OnCollision func(*Position)
+	OnCollision func(Shape)
+	Shape       Shape
 }
 
-func (collisionbox CollisionBox) Process(pos0 Position, pos1 *Position) bool {
-	if pos0 == *pos1 {
-		collisionbox.OnCollision(pos1)
+/*
+ * process a given shape, invoking callback and returning true if a collision occures
+ */
+func (collisionbox CollisionBox) Process(shape Shape) bool {
+	if collisionbox.Shape.Contains(shape) {
+		collisionbox.OnCollision(shape)
 		return true
 	} else {
 		return false

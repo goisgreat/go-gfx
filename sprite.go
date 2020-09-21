@@ -1,4 +1,4 @@
-package gogfx
+package physics
 
 // list of sprites
 type Sprites []Sprite

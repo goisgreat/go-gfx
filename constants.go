@@ -1,4 +1,4 @@
-package gogfx
+package physics
 
 const (
 	// x-y borders

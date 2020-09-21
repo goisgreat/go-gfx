@@ -1,4 +1,4 @@
-package gogfx
+package physics
 
 import (
 	"image/color"
@@ -7,7 +7,7 @@ import (
 
 type Shape interface {
 	Draw()
-	Contains(Position) bool
+	Contains(Shape) bool
 }
 
 type Rect struct {

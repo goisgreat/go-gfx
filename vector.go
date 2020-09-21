@@ -1,4 +1,4 @@
-package gogfx
+package physics
 
 // type vector
 type Vector struct {
