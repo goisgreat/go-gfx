@@ -2,8 +2,8 @@ package gogfx
 
 // position object
 type Position struct {
-	X int8
-	Y int8
+	X int
+	Y int
 }
 
 /*

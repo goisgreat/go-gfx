@@ -2,8 +2,8 @@ package gogfx
 
 // type vector
 type Vector struct {
-	X int8
-	Y int8
+	X int
+	Y int
 }
 
 /*

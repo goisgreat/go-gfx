@@ -5,10 +5,10 @@ type Sprites []Sprite
 
 // game object
 type Sprite interface {
-	Update() (*Position, bool)
+	Update() (Shape, bool)
 	Draw()
 	Init()
-	Process(*Position) bool
+	Process(Shape) bool
 }
 
 /*
@@ -29,25 +29,25 @@ func (sprites Sprites) Init() {
  */
 func (sprites Sprites) Update() {
 	// create a list of positions (for collision detection)
-	positions := []*Position{}
+	shapes := []Shape{}
 
 	// iterate sprites in set
 	for idx := range sprites {
 		// update current sprite. if it has a position, append it to the list
-		if position, hasposition := sprites[idx].Update(); hasposition {
-			positions = append(positions, position)
+		if shape, hasshape := sprites[idx].Update(); hasshape {
+			shapes = append(shapes, shape)
 		}
 	}
 
 	// loop through positions, processing each one. if a collision is detected, return
-	for idx := range positions {
+	for idx := range shapes {
 		// get current position
-		position := positions[idx]
+		shape := shapes[idx]
 
 		// loop through sprites in set, instructing each one to process the current position (unless it's the sprite that's position is being processed)
 		for idx1 := range sprites {
 			if idx != idx1 {
-				if collision := sprites[idx1].Process(position); collision {
+				if collision := sprites[idx1].Process(shape); collision {
 					return
 				}
 			}

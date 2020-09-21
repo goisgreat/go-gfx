@@ -38,3 +38,5 @@ func main() {
 }
 ```
 This program waits for keyboard input asynchronously and loops, updating and drawing a point. When a WASD control is pressed, the callback `sprite.KeyboardController.OnKeyboardControl` is invoked and, as seen in the program, prints a given control on the terminal. In addition, `sprite` will move along the screen (since it has a vector with x velocity 1).
+## Where is the documentation?
+The documentation for this package has yet to be implemented. Sorry about that!
