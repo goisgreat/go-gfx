@@ -31,6 +31,6 @@ func (rect Rect) Draw() {
 /*
  * check if a rectangle contains a given position
  */
-func (rect *Rect) Contains(position Position) bool {
+func (rect *Rect) Contains(shape Shape) bool {
 	return false
 }
