@@ -50,19 +50,19 @@ func CreateStdinReader() func() (byte, error) {
 /*
  * accept event stream object
  * loop {
-	* TODO: pull data from input sources
-	* TODO: push data into stream
-	* delay so we don't gobble up the CPU
+	* get input from callback
+	*
  }
 */
-func SendKeyboardInput(getByte func() (byte, error), channel EventStream) {
+func SendKeyboardInput(getByte func() []byte, channel EventStream) {
 	// loop
 	for {
 		// get a character (represented as a byte) from stdin
-		char, err := getByte()
-		Handle(err, "Reading character from keyboard input")
+		chars := getByte()
 
 		// push character data onto stream
-		channel.Input <- char
+		for idx := range chars {
+			channel.Input <- chars[idx]
+		}
 	}
 }
