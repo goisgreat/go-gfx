@@ -6,13 +6,17 @@ import (
 )
 
 /*
- * disable input buffering
- * do not display entered characters on the screen
+ * disable input buffering from stdin (so that you don't have to press ENTER)
  */
-func Setup() {
+func DisableStdinBuffer() {
 	// disable input buffering
 	exec.Command("stty", "-F", "/dev/tty", "cbreak", "min", "1").Run()
+}
 
+/*
+ * disable entered characters from being "echo"ed
+ */
+func DisableStdinEcho() {
 	// do not display entered characters on the screen
 	exec.Command("stty", "-F", "/dev/tty", "-echo").Run()
 }
