@@ -6,7 +6,7 @@ const (
 	MAX_Y int = 7 // max Y coordinate for an object
 	// ENUM: keyboard controls
 	CON_UP KeyboardControl = iota
+	CON_LEFT
 	CON_DOWN
 	CON_RIGHT
-	CON_LEFT
 )
