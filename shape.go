@@ -33,3 +33,16 @@ func (rect Rect) Draw(img draw.Image) {
 func (rect *Rect) Contains(shape Shape) bool {
 	return false
 }
+
+/*
+ * move a given shape
+ */
+func Move(shape Shape, x int, y int) {
+	rect, ok := shape.(*Rect)
+	if ok {
+		rect.Start.X += x
+		rect.Start.Y += x
+		rect.End.X += x
+		rect.End.Y += x
+	}
+}
