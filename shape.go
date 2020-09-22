@@ -47,6 +47,7 @@ func Move(shape Shape, x int, y int) {
 		rect.End.Y += x
 		return
 	} else {
+		println("Moving unknown shape")
 		os.Exit(1)
 	}
 }
