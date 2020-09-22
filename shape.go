@@ -3,6 +3,7 @@ package physics
 import (
 	"image/color"
 	"image/draw"
+	"os"
 )
 
 type Shape interface {
@@ -44,5 +45,8 @@ func Move(shape Shape, x int, y int) {
 		rect.Start.Y += x
 		rect.End.X += x
 		rect.End.Y += x
+		return
+	} else {
+		os.Exit(1)
 	}
 }
