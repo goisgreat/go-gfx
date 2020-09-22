@@ -42,9 +42,9 @@ func Move(shape Shape, x int, y int) {
 	rect, ok := shape.(*Rect)
 	if ok {
 		rect.Start.X += x
-		rect.Start.Y += x
+		rect.Start.Y += y
 		rect.End.X += x
-		rect.End.Y += x
+		rect.End.Y += y
 		return
 	} else {
 		println("Moving unknown shape")
