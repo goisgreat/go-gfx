@@ -13,14 +13,19 @@ The X-Y coordinates of this program may be confusing. You might be wondering, "W
 ```
 would be in the top left (the first `0` you see). And this is *exactly* how this program is implemented! So, if an object as x `4` and y `4` (in a `10` by `10` matrix), it would be rendered in the middle. So if your code is:
 ```golang
-package physics
+package main
+
+import (
+    "github.com/goisgreat/go-physics"
+)
 
 func main() {
-    point := point{
-        Position{0,0},
+    point := physics.point{
+        physics.Position{0,0},
         ...
     }
-    point.Draw()
+    point.Draw(...)
+    ...
 }
 ```
-and you want `point` to be rendered in the middle of an `8` by `8` grid, simply change `point`'s position to `Position{4,4}`
+and you want `point` to be rendered in the middle of an `3` by `3` grid, simply change `point`'s position to `Position{1, 1}`
