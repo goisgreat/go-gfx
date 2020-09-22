@@ -26,6 +26,22 @@ var WASD = KeyboardMap{
 	100, // d
 }
 
+// yields the user direct control over their position
+func DirectPositionControl(shape Shape) func(KeyboardControl) {
+	return func(control KeyboardControl) {
+		switch control {
+		case CON_UP:
+			Move(shape, 0, -1)
+		case CON_LEFT:
+			Move(shape, -1, 0)
+		case CON_DOWN:
+			Move(shape, 0, 1)
+		case CON_RIGHT:
+			Move(shape, 1, 0)
+		}
+	}
+}
+
 /*
  * grab character from input stream
  * when a character of intrest is found, invoke callback
