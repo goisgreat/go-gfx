@@ -29,7 +29,7 @@ func DisableStdinEcho() {
 	* return character,
  }
 */
-func GetCharReader() func() (byte, error) {
+func CreateStdinReader() func() (byte, error) {
 	// store a list of bytes
 	var bytes []byte = make([]byte, 1)
 
@@ -55,18 +55,12 @@ func GetCharReader() func() (byte, error) {
 	* delay so we don't gobble up the CPU
  }
 */
-func GrabInput(channel EventStream) {
-	// create character reader
-	getchar := GetCharReader()
-
+func SendKeyboardInput(getByte func() (byte, error), channel EventStream) {
 	// loop
 	for {
 		// get a character (represented as a byte) from stdin
-		char, err := getchar()
-
-		if err != nil {
-			panic(err)
-		}
+		char, err := getByte()
+		Handle(err, "Reading character from keyboard input")
 
 		// push character data onto stream
 		channel.Input <- char
