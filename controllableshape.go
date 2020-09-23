@@ -6,3 +6,7 @@ type ControllableShape struct {
 	KeyboardController
 	CollisionBox
 }
+
+func (controllableShape *ControllableShape) Update() Shape {
+	return controllableShape.Shape
+}
