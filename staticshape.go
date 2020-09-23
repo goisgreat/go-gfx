@@ -6,8 +6,8 @@ type StaticShape struct {
 	CollisionBox
 }
 
-func (staticShape *StaticShape) Update() (Shape, bool) {
-	return staticShape.Shape, true
+func (staticShape *StaticShape) Update() Shape {
+	return staticShape.Shape
 }
 
 func (staticShape *StaticShape) Init() {
