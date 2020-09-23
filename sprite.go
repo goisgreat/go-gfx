@@ -7,7 +7,7 @@ type Sprites []Sprite
 
 // game object
 type Sprite interface {
-	Update() (Shape, bool)
+	Update() Shape
 	Draw(draw.Image)
 	Init()
 	Process(Shape) bool
@@ -36,7 +36,7 @@ func (sprites Sprites) Update() {
 	// iterate sprites in set
 	for idx := range sprites {
 		// update current sprite. if it has a position, append it to the list
-		if shape, hasshape := sprites[idx].Update(); hasshape {
+		if shape := sprites[idx].Update(); shape != nil {
 			shapes = append(shapes, shape)
 		}
 	}
