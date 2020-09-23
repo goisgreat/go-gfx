@@ -2,7 +2,7 @@ package physics
 
 type CollisionBox struct {
 	OnCollision func(Shape)
-	Shape       Shape
+	Shape
 }
 
 /*

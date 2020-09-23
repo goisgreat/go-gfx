@@ -1,10 +1,8 @@
 package physics
 
 type ControllableShape struct {
-	Vector
-	Shape
+	StaticShape
 	KeyboardController
-	CollisionBox
 }
 
 func (controllableShape *ControllableShape) Update() Shape {

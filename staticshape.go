@@ -11,5 +11,5 @@ func (staticShape *StaticShape) Update() Shape {
 }
 
 func (staticShape *StaticShape) Init() {
-
+	staticShape.CollisionBox.Shape = staticShape.Shape
 }
