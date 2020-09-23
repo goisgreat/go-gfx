@@ -6,31 +6,31 @@ package physics
 
 import (
     time "time"
-    gogfx "github.com/goisgreat/go-gfx"
+    physics "github.com/goisgreat/go-gfx"
 )
 
 func main() {
-    stream := gogfx.EventStream{
+    stream := physics.EventStream{
         Input: make(chan byte)
     }
-    sprite := gogfx.Point{
-        gogfx.Position{0,0},
-        gogfx.Vector{1,0},
-        gogfx.KeyboardController{
+    sprite := physics.Point{
+        physics.Position{0,0},
+        physics.Vector{1,0},
+        physics.KeyboardController{
             Input: stream.Input,
-            KeyboardMap: gogfx.WASD,
+            KeyboardMap: physics.WASD,
         },
     }
-    sprite.KeyboardController.OnKeyboardControl = func(control gogfx.KeyboardConrol) {
+    sprite.KeyboardController.OnKeyboardControl = func(control physics.KeyboardConrol) {
         println(control)
     }
 
-    go gogfx.GrabInput(stream)
+    go physics.GrabInput(stream)
     
     sprite.Init()
     
     for {
-        gogfx.ClearTerminal()
+        physics.ClearTerminal()
         sprite.Update()
         sprite.Draw()
         time.Sleep(200 * time.Millisecond)
