@@ -1,5 +1,7 @@
 package physics
 
+import "os"
+
 // type vector
 type Vector struct {
 	X int
@@ -13,5 +15,15 @@ type Vector struct {
  */
 func (vector Vector) Hit(shape Shape) {
 	// move given shape (based on `vector` x/y coordinates)
-	Move(shape, vector.X, vector.Y)
+	rect, ok := shape.(*Rect)
+	if ok {
+		rect.Start.X += vector.X
+		rect.Start.Y += vector.Y
+		rect.End.X += vector.X
+		rect.End.Y += vector.Y
+		return
+	} else {
+		println("Moving unknown shape")
+		os.Exit(1)
+	}
 }

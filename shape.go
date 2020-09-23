@@ -3,7 +3,6 @@ package physics
 import (
 	"image/color"
 	"image/draw"
-	"os"
 )
 
 type Shape interface {
@@ -33,21 +32,4 @@ func (rect Rect) Draw(img draw.Image) {
  */
 func (rect *Rect) Contains(shape Shape) bool {
 	return false
-}
-
-/*
- * move a given shape
- */
-func Move(shape Shape, x int, y int) {
-	rect, ok := shape.(*Rect)
-	if ok {
-		rect.Start.X += x
-		rect.Start.Y += y
-		rect.End.X += x
-		rect.End.Y += y
-		return
-	} else {
-		println("Moving unknown shape")
-		os.Exit(1)
-	}
 }
