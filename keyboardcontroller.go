@@ -1,5 +1,7 @@
 package physics
 
+import "time"
+
 // keyboard control type
 type KeyboardControl uint8
 
@@ -27,8 +29,9 @@ var WASD = KeyboardMap{
 }
 
 // yields the user direct control over their position
-func DirectPositionControl(shape Shape) func(KeyboardControl) {
+func DirectPositionControl(shape Shape, delay time.Duration) func(KeyboardControl) {
 	return func(control KeyboardControl) {
+		// decide what to do based on the control presed
 		switch control {
 		case CON_UP:
 			Move(shape, 0, -1)
@@ -39,6 +42,8 @@ func DirectPositionControl(shape Shape) func(KeyboardControl) {
 		case CON_RIGHT:
 			Move(shape, 1, 0)
 		}
+		// delay
+		time.Sleep(delay)
 	}
 }
 
@@ -46,21 +51,21 @@ func DirectPositionControl(shape Shape) func(KeyboardControl) {
  * grab character from input stream
  * when a character of intrest is found, invoke callback
  */
-func (keyboard_controller KeyboardController) Init() {
+func (keyboardController KeyboardController) Init() {
 	// maps character to CON_UP, CON_DOWN, etc.
 	charmap := map[byte]KeyboardControl{
-		keyboard_controller.KeyboardMap.KEY_UP:    CON_UP,
-		keyboard_controller.KeyboardMap.KEY_DOWN:  CON_DOWN,
-		keyboard_controller.KeyboardMap.KEY_LEFT:  CON_LEFT,
-		keyboard_controller.KeyboardMap.KEY_RIGHT: CON_RIGHT,
+		keyboardController.KeyboardMap.KEY_UP:    CON_UP,
+		keyboardController.KeyboardMap.KEY_DOWN:  CON_DOWN,
+		keyboardController.KeyboardMap.KEY_LEFT:  CON_LEFT,
+		keyboardController.KeyboardMap.KEY_RIGHT: CON_RIGHT,
 	}
 	// loop
 	for {
 		// get character
-		char := <-keyboard_controller.Input
+		char := <-keyboardController.Input
 		// if character in map, invoke callback
 		if control, ok := charmap[char]; ok {
-			keyboard_controller.OnKeyboardControl(control)
+			keyboardController.OnKeyboardControl(control)
 		}
 	}
 }
