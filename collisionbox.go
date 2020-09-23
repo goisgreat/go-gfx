@@ -9,10 +9,12 @@ type CollisionBox struct {
  * process a given shape, invoking callback and returning true if a collision occures
  */
 func (collisionbox CollisionBox) Process(shape Shape) bool {
-	if collisionbox.Shape.Contains(shape) {
-		collisionbox.OnCollision(shape)
-		return true
-	} else {
+	if collisionbox.Shape != nil {
+		if collisionbox.Shape.Contains(shape) {
+			collisionbox.OnCollision(shape)
+			return true
+		}
 		return false
 	}
+	return false
 }
