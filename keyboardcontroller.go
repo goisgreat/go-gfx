@@ -34,12 +34,16 @@ func DirectPositionControl(shape Shape, delay time.Duration) func(KeyboardContro
 		// decide what to do based on the control presed
 		switch control {
 		case CON_UP:
+			// move shape up
 			Move(shape, 0, -1)
 		case CON_LEFT:
+			// move shape left
 			Move(shape, -1, 0)
 		case CON_DOWN:
+			// move shape down
 			Move(shape, 0, 1)
 		case CON_RIGHT:
+			// move shape right
 			Move(shape, 1, 0)
 		}
 		// delay
