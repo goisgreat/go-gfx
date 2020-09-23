@@ -2,6 +2,7 @@ package physics
 
 type Callbacks struct {
 	OnUpdate func() (Shape, bool)
+	OnInit   func()
 }
 
 /*
@@ -15,4 +16,14 @@ func (callbacks Callbacks) Update() (Shape, bool) {
 	}
 	// otherwise return no shape and false
 	return nil, false
+}
+
+/*
+ * use stored callbacks to initiate
+ */
+func (callbacks Callbacks) Init() {
+	// if oninit is set, invoke it
+	if callbacks.OnInit != nil {
+		callbacks.OnInit()
+	}
 }
