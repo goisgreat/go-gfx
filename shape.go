@@ -19,6 +19,22 @@ type Rectangle struct {
 	Color  color.RGBA      // color
 }
 
+// CreateRectangle() is a helper function for creating Rectangle objects
+func CreateRectangle(minX int, minY int, maxX int, maxY int, c color.RGBA) Rectangle {
+	// create a new Rectangle and return it
+	return Rectangle{
+		// rectangle boundary
+		Bounds: image.Rectangle{
+			// minimum
+			image.Point{minX, minY},
+			// maximum
+			image.Point{maxX, maxY},
+		},
+		// rectangle color
+		Color: c,
+	}
+}
+
 // Draw() satisfies the Draw method on interface Shape
 // it draws, pixel by pixel, a rectangle
 func (rectangle Rectangle) Draw(frame draw.Image) {
@@ -51,8 +67,8 @@ type Point struct {
 	Color       color.RGBA  // color of point
 }
 
-// Draw() satisifes the Draw method on interface Shape
-// it sets the point's x/y coordinates a draw.Image
+// Draw() satisifes the Draw method on interface Shape.
+// It sets the point's x/y coordinates a draw.Image
 func (point Point) Draw(frame draw.Image) {
 	// set Point on frame
 	frame.Set(point.Coordinates.X, point.Coordinates.Y, point.Color)

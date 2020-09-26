@@ -6,6 +6,15 @@ type ControllableShape struct {
 	KeyboardController // extra keyboard controller component
 }
 
+// CreateControllableShape() is a helper function for instantiating ControllableShape objects
+func CreateControllableShape(shape Shape, keyboardController KeyboardController) ControllableShape {
+	// create a new ControllableShape and return it
+	return ControllableShape{
+		StaticShape:        CreateStaticShape(shape), // with a StaticShape derived from given shape
+		KeyboardController: keyboardController,       // ...and the given KeyboardController
+	}
+}
+
 // Update() satisfies the Update method on interface Sprite
 func (controllableShape *ControllableShape) Update() Shape {
 	return controllableShape.Shape

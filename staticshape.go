@@ -1,6 +1,6 @@
 package physics
 
-// StaticShape = Vector + Shape + CollisionBox
+// StaticShape Sprite = Vector + Shape + CollisionBox
 type StaticShape struct {
 	Vector
 	Shape
@@ -12,8 +12,22 @@ func (staticShape *StaticShape) Update() Shape {
 	return staticShape.Shape
 }
 
-// Init() satisfies a the Init method on Sprite interface
-// please invoke this upon creating a StaticShape
+// Init() satisfies a the Init method on Sprite interface.
+// Please invoke this upon creating a StaticShape
 func (staticShape *StaticShape) Init() {
 	staticShape.CollisionBox.Shape = staticShape.Shape
+}
+
+// CreateStaticShape() is a helper function for instantiating `StaticShape`s
+func CreateStaticShape(shape Shape) StaticShape {
+	// store a new StaticShape
+	sprite := StaticShape{
+		Vector{0, 0},   // use a null vector...
+		shape,          // ...the given shape
+		CollisionBox{}, // ...and an empty collision box
+	}
+	// initialize it
+	sprite.Init()
+	// return
+	return sprite
 }

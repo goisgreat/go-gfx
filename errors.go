@@ -7,7 +7,7 @@ import "os"
 func Handle(err error, state string) {
 	// if error is not nil, print it to the command line and exit
 	if err != nil {
-		println("While", state+":", err.Error())
+		println("Error while", state, err.Error())
 		os.Exit(1)
 	}
 }

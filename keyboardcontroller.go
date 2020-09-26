@@ -14,6 +14,14 @@ type KeyboardMap struct {
 	KEY_RIGHT byte // ascii character for key right
 }
 
+// wasd controll scheme
+var WASD = KeyboardMap{
+	119, // w
+	97,  // a
+	115, // s
+	100, // d
+}
+
 // keyboard controller component
 type KeyboardController struct {
 	Input             chan byte             // where to get input from
@@ -21,12 +29,14 @@ type KeyboardController struct {
 	OnKeyboardControl func(KeyboardControl) // invoked when keyboard control hit
 }
 
-// wasd controll scheme
-var WASD = KeyboardMap{
-	119, // w
-	97,  // a
-	115, // s
-	100, // d
+// CreateWASDKeyboardController() is a helper function for instantiating `KeyboardController`s with a WASD control scheme.
+// [input] should be a channel of ascii keyboard input (`rune`s must be converted to `byte`s)
+func CreateWASDKeyboardController(input chan byte) KeyboardController {
+	// create a new WASD KeyboardController and return it
+	return KeyboardController{
+		Input:       input, // with the given keyboard control stream...
+		KeyboardMap: WASD,  // ...and a WASD keyboard control scheme
+	}
 }
 
 // DirectPositionControl() yields the user direct control over their position
