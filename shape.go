@@ -20,9 +20,9 @@ type Rectangle struct {
 }
 
 // CreateRectangle() is a helper function for creating Rectangle objects
-func CreateRectangle(minX int, minY int, maxX int, maxY int, c color.RGBA) Rectangle {
+func CreateRectangle(minX int, minY int, maxX int, maxY int, c color.RGBA) *Rectangle {
 	// create a new Rectangle and return it
-	return Rectangle{
+	return &Rectangle{
 		// rectangle boundary
 		Bounds: image.Rectangle{
 			// minimum
