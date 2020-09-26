@@ -27,16 +27,12 @@ func (rectangle Rectangle) Draw(frame draw.Image) {
 	var y int = rectangle.Bounds.Min.Y // current y coordinate
 
 	// loop while y in rectangle.bounds
-	for y < rectangle.Bounds.Max.Y {
+	for ; y < rectangle.Bounds.Max.Y; y++ {
 		// loop while x in rectangle.bounds
-		for x < rectangle.Bounds.Max.X {
+		for ; x < rectangle.Bounds.Max.X; x++ {
 			// set position
 			frame.Set(x, y, rectangle.Color)
-			// increment
-			x++
 		}
-		// increment
-		y++
 	}
 }
 
