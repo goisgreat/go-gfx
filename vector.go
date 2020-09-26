@@ -5,7 +5,8 @@ import (
 	"os"
 )
 
-// type vector
+// Vector is an alias for image.Point and is equivalent to image.Point in all ways
+// It is used to distinguish vectors from points on the screen
 type Vector image.Point
 
 // Hit() moves [shape] using the X/Y coordinates from a vector

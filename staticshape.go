@@ -1,5 +1,6 @@
 package physics
 
+// StaticShape = Vector + Shape + CollisionBox
 type StaticShape struct {
 	Vector
 	Shape

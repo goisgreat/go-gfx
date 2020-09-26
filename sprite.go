@@ -2,21 +2,18 @@ package physics
 
 import "image/draw"
 
-// list of sprites
+// Sprites is a list of sprites
 type Sprites []Sprite
 
-// game object
+// Sprite is an interface for all actions relating to a game object
 type Sprite interface {
-	Update() Shape
-	Draw(draw.Image)
-	Init()
-	Process(Shape) bool
+	Update() Shape      // update sprite and return a new shape
+	Draw(draw.Image)    // draw a sprite on a given image
+	Init()              // initialize a sprite
+	Process(Shape) bool // process shape and return boolean value indicating a collision
 }
 
-/*
- * accept set of sprites
- * initialize each sprite in set
- */
+// Init() initializes all sprites in a set
 func (sprites Sprites) Init() {
 	// iterate sprites in set
 	for idx := range sprites {
@@ -25,7 +22,7 @@ func (sprites Sprites) Init() {
 	}
 }
 
-// Update() updates ALL sprites in set
+// Update() updates ALL sprites in a set
 func (sprites Sprites) Update() {
 	// create a list of positions (for collision detection)
 	shapes := []Shape{}
@@ -42,7 +39,6 @@ func (sprites Sprites) Update() {
 	for idx := range shapes {
 		// get current position
 		shape := shapes[idx]
-
 		// loop through sprites in set, instructing each one to process the current position (unless it's the sprite that's position is being processed)
 		for idx1 := range sprites {
 			if idx != idx1 {

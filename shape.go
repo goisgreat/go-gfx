@@ -7,13 +7,13 @@ import (
 	"os"
 )
 
-// type Shape
+// Shape is an interface for geometry and rendering
 type Shape interface {
-	Draw(draw.Image)
-	Overlaps(Shape) bool
+	Draw(draw.Image)     // draw a shape on a given image
+	Overlaps(Shape) bool // report if a shape overlaps with another given one
 }
 
-// type Rectangle
+// Rectangle Shape = Color +
 type Rectangle struct {
 	Bounds image.Rectangle // rectangle bounds
 	Color  color.RGBA      // color
@@ -26,7 +26,7 @@ func (rectangle Rectangle) Draw(frame draw.Image) {
 	for y := rectangle.Bounds.Min.Y; y < rectangle.Bounds.Max.Y; y++ {
 		// loop while x in rectangle.bounds
 		for x := rectangle.Bounds.Min.X; x < rectangle.Bounds.Max.X; x++ {
-			// set position
+			// set current position on frame
 			frame.Set(x, y, rectangle.Color)
 		}
 	}
@@ -45,7 +45,7 @@ func (rectangle Rectangle) Overlaps(shape Shape) bool {
 	return false
 }
 
-// type Point
+// Point Shape = image.Point + color.RGBA
 type Point struct {
 	Coordinates image.Point // coordinates of point
 	Color       color.RGBA  // color of point

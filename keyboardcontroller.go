@@ -2,15 +2,16 @@ package physics
 
 import "time"
 
-// keyboard control type
+// KeyboardControl is an alias for uint8 and is equivilant to uint8 in all ways
+// It is used to distinguish keyboard controls from integer values
 type KeyboardControl uint8
 
 // map of controls
 type KeyboardMap struct {
-	KEY_UP    byte
-	KEY_LEFT  byte
-	KEY_DOWN  byte
-	KEY_RIGHT byte
+	KEY_UP    byte // ascii character for key up
+	KEY_LEFT  byte // ascii character for key down
+	KEY_DOWN  byte // ascii character for key left
+	KEY_RIGHT byte // ascii character for key right
 }
 
 // keyboard controller component
@@ -65,8 +66,8 @@ func (keyboardController KeyboardController) Init() {
 	for {
 		// get character
 		char := <-keyboardController.Input
-		// if character in map, invoke callback
-		if control, ok := charmap[char]; ok {
+		// if character in map AND OnKeyboardControl != nil, invoke it
+		if control, ok := charmap[char]; ok && keyboardController.OnKeyboardControl != nil {
 			keyboardController.OnKeyboardControl(control)
 		}
 	}

@@ -1,9 +1,9 @@
 package physics
 
-// type CollisionBox
+// CollisionBox is an object for collision handling
 type CollisionBox struct {
 	OnCollision func(Shape) // What do I do when a collision occures?
-	Shape
+	Shape                   // what shape do I use to check collisions with
 }
 
 // Process() satisfies the Process() method on interface Sprite
