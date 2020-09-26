@@ -1,42 +1,7 @@
 # Golang Game Engine
-## What is the *Golang Game Engine* and how do I use it?
-The golang game engine is a "physics" library for golang. Here is an example to help explain usage.
-```golang
-package physics
-
-import (
-    time "time"
-    physics "github.com/goisgreat/go-gfx"
-)
-
-func main() {
-    stream := physics.EventStream{
-        Input: make(chan byte)
-    }
-    sprite := physics.Point{
-        physics.Position{0,0},
-        physics.Vector{1,0},
-        physics.KeyboardController{
-            Input: stream.Input,
-            KeyboardMap: physics.WASD,
-        },
-    }
-    sprite.KeyboardController.OnKeyboardControl = func(control physics.KeyboardConrol) {
-        println(control)
-    }
-
-    go physics.GrabInput(stream)
-    
-    sprite.Init()
-    
-    for {
-        physics.ClearTerminal()
-        sprite.Update()
-        sprite.Draw()
-        time.Sleep(200 * time.Millisecond)
-    }
-}
-```
-This program waits for keyboard input asynchronously and loops, updating and drawing a point. When a WASD control is pressed, the callback `sprite.KeyboardController.OnKeyboardControl` is invoked and, as seen in the program, prints a given control on the terminal. In addition, `sprite` will move along the screen (since it has a vector with x velocity 1).
+## What is the *Golang Game Engine*?
+The *Golang Game Engine* is a library for "physics" logic. It provides a composition-based architecture, so that means easy swaping-in and swaping-out of components to achive desired functionality.
+## What can I use to render sprites
+I would recommend ebiten. The github page is [here](http://github.com/hajimehoshi/ebiten) and the documentation [here](http://godoc.org/github.com/hajimehoshi/ebiten). There are many great tutorials and the implementation allows for different libraries to be intergrated into your project (such as [image/draw](http://godoc.org/image/draw)).
 ## Where is the documentation?
 The documentation for this project can be found [here](http://godoc.org/github.com/goisgreat/go-physics).
