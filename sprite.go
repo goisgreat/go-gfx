@@ -42,9 +42,7 @@ func (sprites Sprites) Update() {
 		// loop through sprites in set, instructing each one to process the current position (unless it's the sprite that's position is being processed)
 		for idx1 := range sprites {
 			if idx != idx1 {
-				if collision := sprites[idx1].Process(shape); collision {
-					return
-				}
+				sprites[idx1].Process(shape)
 			}
 		}
 	}
