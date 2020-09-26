@@ -1,35 +1,38 @@
 package physics
 
 import (
+	"image"
 	"image/color"
 	"image/draw"
 )
 
 type Shape interface {
 	Draw(draw.Image)
-	Contains(Shape) bool
+	Overlaps(Shape) bool
 }
 
-type Rect struct {
-	Start Position   // starting point
-	End   Position   // ending point
-	Color color.RGBA // rectangle color
+// type Rectangle
+type Rectangle struct {
+	Bounds image.Rectangle // rectangle bounds
+	Color  color.RGBA      // color
 }
 
-/*
- * draw a given rectangle
- */
-func (rect Rect) Draw(img draw.Image) {
-	for y := rect.Start.Y; y <= rect.End.Y; y++ {
-		for x := rect.Start.X; x <= rect.End.X; x++ {
-			img.Set(x, y, rect.Color)
+// draw a rectangle
+func (rectangle Rectangle) Draw(frame draw.Image) {
+	// variables
+	var x int = rectangle.Bounds.Min.X // current x coordinate
+	var y int = rectangle.Bounds.Min.Y // current y coordinate
+
+	// loop while y in rectangle.bounds
+	for y < rectangle.Bounds.Max.Y {
+		// loop while x in rectangle.bounds
+		for x < rectangle.Bounds.Max.X {
+			// set position
+			frame.Set(x, y, rectangle.Color)
+			// increment
+			x++
 		}
+		// increment
+		y++
 	}
-}
-
-/*
- * check if a rectangle contains a given position
- */
-func (rect *Rect) Contains(shape Shape) bool {
-	return false
 }

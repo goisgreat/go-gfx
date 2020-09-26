@@ -1,12 +1,12 @@
 package physics
 
-import "os"
+import (
+	"image"
+	"os"
+)
 
 // type vector
-type Vector struct {
-	X int
-	Y int
-}
+type Vector image.Point
 
 /*
  * accept vector & shape pointer
@@ -14,9 +14,7 @@ type Vector struct {
  * if shape's position exceeds boundary, wrap
  */
 func (vector Vector) Hit(shape Shape) {
-	// move given shape (based on `vector` x/y coordinates)
-	rect, ok := shape.(*Rect)
-	if ok {
+	if rect, ok := shape.(*Rectangle); ok {
 		rect.Start.X += vector.X
 		rect.Start.Y += vector.Y
 		rect.End.X += vector.X

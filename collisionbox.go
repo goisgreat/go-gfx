@@ -10,7 +10,7 @@ type CollisionBox struct {
  */
 func (collisionbox CollisionBox) Process(shape Shape) bool {
 	if collisionbox.Shape != nil {
-		if collisionbox.Shape.Contains(shape) {
+		if collisionbox.Shape.Overlaps(shape) {
 			collisionbox.OnCollision(shape)
 			return true
 		}

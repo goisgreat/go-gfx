@@ -1,10 +1,9 @@
 package physics
 
-// position object
-type Position struct {
-	X int
-	Y int
-}
+import "image"
+
+// `Position` is an alias for image.Point
+type Position image.Point
 
 /*
  * accept position
