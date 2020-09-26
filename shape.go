@@ -52,3 +52,28 @@ func (rectangle Rectangle) Overlaps(shape Shape) bool {
 	// unreachable code but we still need to return a boolean
 	return false
 }
+
+// type Point
+type Point struct {
+	Coordinates image.Point // coordinates of point
+	Color       color.RGBA  // color of point
+}
+
+// Draw() satisifes the Draw method on interface Shape
+// it sets the point's x/y coordinates a draw.Image
+func (point Point) Draw(frame draw.Image) {
+	// set Point on frame
+	frame.Set(point.Coordinates.X, point.Coordinates.Y, point.Color)
+}
+
+// Overlaps() reports if point overlaps a given shape
+func (point Point) Overlaps(shape Shape) bool {
+	if point1, ok := shape.(*Point); ok { // we are processing a point
+		return point1.Coordinates == point.Coordinates
+	}
+	// we are processing an unknown shape and we panic
+	println("Processing unknown shape.")
+	os.Exit(1)
+	// unreachable code but we still need to return a boolean
+	return false
+}
