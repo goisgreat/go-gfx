@@ -28,7 +28,7 @@ var WASD = KeyboardMap{
 	100, // d
 }
 
-// yields the user direct control over their position
+// DirectPositionControl() yields the user direct control over their position
 func DirectPositionControl(shape Shape, delay time.Duration) func(KeyboardControl) {
 	return func(control KeyboardControl) {
 		// decide what to do based on the control presed
@@ -51,10 +51,8 @@ func DirectPositionControl(shape Shape, delay time.Duration) func(KeyboardContro
 	}
 }
 
-/*
- * grab character from input stream
- * when a character of intrest is found, invoke callback
- */
+// Init() initializes a KeyboardController
+// please call Init() upon creating a KeyboardController
 func (keyboardController KeyboardController) Init() {
 	// maps character to CON_UP, CON_DOWN, etc.
 	charmap := map[byte]KeyboardControl{

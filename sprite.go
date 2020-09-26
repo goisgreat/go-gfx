@@ -25,10 +25,7 @@ func (sprites Sprites) Init() {
 	}
 }
 
-/*
- * accept set of sprites
- * update all sprites in set
- */
+// Update() updates ALL sprites in set
 func (sprites Sprites) Update() {
 	// create a list of positions (for collision detection)
 	shapes := []Shape{}
@@ -57,10 +54,7 @@ func (sprites Sprites) Update() {
 	}
 }
 
-/*
- * accept set of sprites
- * draw all sprites in set on frame
- */
+// Draw() draws ALL sprites in set on a given frame
 func (sprites Sprites) Draw(image draw.Image) {
 	// iterate sprites in set
 	for idx := range sprites {

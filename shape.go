@@ -17,7 +17,7 @@ type Rectangle struct {
 	Color  color.RGBA      // color
 }
 
-// draw a rectangle
+// Draw() draws, pixel by pixel, a rectangle
 func (rectangle Rectangle) Draw(frame draw.Image) {
 	// variables
 	var x int = rectangle.Bounds.Min.X // current x coordinate

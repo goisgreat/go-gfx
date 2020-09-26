@@ -4,14 +4,7 @@ import (
 	"os"
 )
 
-/*
- * usage: call this function, get a callback, invoke the callback, and a byte or error will be returned
- * return function {
-	* get character
-	* get error
-	* return character,
- }
-*/
+// CreateStdinReader() returns a stdin reader that reports the character that was just pressed and any errors
 func CreateStdinReader() func() (byte, error) {
 	// store a list of bytes
 	var bytes []byte = make([]byte, 1)

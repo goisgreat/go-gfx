@@ -2,24 +2,19 @@ package physics
 
 import "os/exec"
 
-/*
- * clear the terminal using ascii escape sequences
- */
+// ClearTerminal() uses ascii escape sequences to clear the screen
 func ClearTerminal() {
 	print("\033[H\033[2J")
 }
 
-/*
- * disable input buffering from stdin (so that you don't have to press ENTER)
- */
+// DisableStdinBuffer() disables input buffering from stdin via stty
+// once invoked, you will no longer have to press ENTER before stdin is submitted
 func DisableStdinBuffer() {
 	// disable input buffering
 	exec.Command("stty", "-F", "/dev/tty", "cbreak", "min", "1").Run()
 }
 
-/*
- * disable entered characters from being "echo"ed
- */
+// DisableStdinEcho() hides entered characters (from stdin) from being displayed
 func DisableStdinEcho() {
 	// do not display entered characters on the screen
 	exec.Command("stty", "-F", "/dev/tty", "-echo").Run()

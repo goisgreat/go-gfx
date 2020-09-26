@@ -2,14 +2,12 @@ package physics
 
 import "os"
 
-/*
- * "handle" a given error
- * note that passing `nil` to this function will NOT crash the program
- */
+// handle() handles a given error
+// [state] should have information about what was being attempted
 func Handle(err error, state string) {
-	// if error is not nil, print it to the command line
+	// if error is not nil, print it to the command line and exit
 	if err != nil {
-		println(state, ": ", err.Error())
+		println("While", state+":", err.Error())
 		os.Exit(1)
 	}
 }

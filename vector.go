@@ -8,19 +8,15 @@ import (
 // type vector
 type Vector image.Point
 
-/*
- * accept vector & shape pointer
- * update shape based on x/y velocity
- * if shape's position exceeds boundary, wrap
- */
+// Hit() moves [shape] using the X/Y coordinates from a vector
 func (vector Vector) Hit(shape Shape) {
-	if rect, ok := shape.(*Rectangle); ok {
+	if rect, ok := shape.(*Rectangle); ok { // we are moving a rectangle.
 		rect.Start.X += vector.X
 		rect.Start.Y += vector.Y
 		rect.End.X += vector.X
 		rect.End.Y += vector.Y
 		return
-	} else {
+	} else { // we are moving an unknown shape and we freak out.
 		println("Moving unknown shape")
 		os.Exit(1)
 	}
