@@ -22,14 +22,10 @@ type Rectangle struct {
 // Draw() satisfies the Draw method on interface Shape
 // it draws, pixel by pixel, a rectangle
 func (rectangle Rectangle) Draw(frame draw.Image) {
-	// variables
-	var x int = rectangle.Bounds.Min.X // current x coordinate
-	var y int = rectangle.Bounds.Min.Y // current y coordinate
-
 	// loop while y in rectangle.bounds
-	for ; y < rectangle.Bounds.Max.Y; y++ {
+	for y := rectangle.Bounds.Min.Y; y < rectangle.Bounds.Max.Y; y++ {
 		// loop while x in rectangle.bounds
-		for ; x < rectangle.Bounds.Max.X; x++ {
+		for x := rectangle.Bounds.Min.X; x < rectangle.Bounds.Max.X; x++ {
 			// set position
 			frame.Set(x, y, rectangle.Color)
 		}
