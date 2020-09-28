@@ -6,13 +6,15 @@ type CollisionBox struct {
 	Shape                   // what shape do I use to check collisions with
 }
 
-// Process() satisfies the Process() method on interface Sprite
-// it processes a given shape and invokes
+// Process() satisfies the Process() method on interface Sprite.
+// It processes a given shape and invokes any OnCollision callback
 func (collisionbox CollisionBox) Process(shape Shape) bool {
+	// compare shape0 to shape1
+	comparison := collisionbox.Shape.Compare(shape)
 	// collisionbox.Shape is provided...
 	if collisionbox.Shape != nil {
 		// if collisionbox.Shape overlaps given shape
-		if collisionbox.Shape.Overlaps(shape) {
+		if comparison.Overlaps {
 			// if oncollision set
 			if collisionbox.OnCollision != nil {
 				collisionbox.OnCollision(shape)

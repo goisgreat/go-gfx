@@ -4,13 +4,22 @@ import (
 	"image"
 	"image/color"
 	"image/draw"
-	"os"
 )
+
+// ShapeComparison is the result of running Shape.Compare().
+// It provides information about the relative position of 2 rectangles
+type ShapeComparison struct {
+	Higher   bool // is shape1 above shape0
+	Lower    bool // is shape1 below shape0
+	Right    bool // is shape1 to the right of shape0
+	Left     bool // is shape1 to the left of shape0
+	Overlaps bool // does shape1 overlap shape0
+}
 
 // Shape is an interface for geometry and rendering
 type Shape interface {
-	Draw(draw.Image)     // draw a shape on a given image
-	Overlaps(Shape) bool // report if a shape overlaps with another given one
+	Draw(draw.Image) // draw a shape on a given image
+	Compare(Shape) ShapeComparison
 }
 
 // Rectangle Shape = Color +
@@ -48,17 +57,17 @@ func (rectangle Rectangle) Draw(frame draw.Image) {
 	}
 }
 
-// Overlaps() satisfies the Overlaps method on interface Shape
-// it reports whether a rectangle overlaps with a given shape
-func (rectangle Rectangle) Overlaps(shape Shape) bool {
-	if rectangle1, ok := shape.(*Rectangle); ok { // we are processing a rectangle.
-		return rectangle.Bounds.Overlaps(rectangle1.Bounds)
+// Compare() satifies the Compare method on interface Shape
+func (rectangle Rectangle) Compare(shape Shape) ShapeComparison {
+	// store a ShapeComparison to write results to
+	var result ShapeComparison
+	// are we comparing rectangles?
+	if rectangle1, ok := shape.(*Rectangle); ok {
+		// does rectangle1 overlap with rectangle?
+		result.Overlaps = rectangle1.Bounds.Overlaps(rectangle.Bounds)
 	}
-	// we are processing an unknown shape and we freak out.
-	println("Moving unknown shape")
-	os.Exit(1)
-	// unreachable code but we still need to return a boolean
-	return false
+	// return result
+	return result
 }
 
 // Point Shape = image.Point + color.RGBA
@@ -74,14 +83,15 @@ func (point Point) Draw(frame draw.Image) {
 	frame.Set(point.Coordinates.X, point.Coordinates.Y, point.Color)
 }
 
-// Overlaps() reports if point overlaps a given shape
-func (point Point) Overlaps(shape Shape) bool {
-	if point1, ok := shape.(*Point); ok { // we are processing a point
-		return point1.Coordinates == point.Coordinates
+// Compare() satisfies the Compare method on interface Shape
+func (point Point) Compare(shape Shape) ShapeComparison {
+	// store a ShapeComparison to write results to
+	var result ShapeComparison
+	// are we processing a point?
+	if point1, ok := shape.(*Point); ok {
+		// report if point overlaps point1
+		result.Overlaps = point.Coordinates == point1.Coordinates
 	}
-	// we are processing an unknown shape and we panic
-	println("Processing unknown shape.")
-	os.Exit(1)
-	// unreachable code but we still need to return a boolean
-	return false
+	// return result
+	return result
 }
