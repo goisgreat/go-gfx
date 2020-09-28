@@ -40,7 +40,7 @@ func CreateWASDKeyboardController(input chan byte) KeyboardController {
 }
 
 // DirectPositionControl() yields the user direct control over their position
-func DirectPositionControl(shape Shape, delay time.Duration) func(KeyboardControl) {
+func DirectPositionControl(shape Geometry, delay time.Duration) func(KeyboardControl) {
 	return func(control KeyboardControl) {
 		// decide what to do based on the control presed
 		switch control {

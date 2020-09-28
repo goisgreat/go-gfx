@@ -10,7 +10,7 @@ import (
 type Vector image.Point
 
 // Hit() moves [shape] using the X/Y coordinates from a vector
-func (vector Vector) Hit(shape Shape) {
+func (vector Vector) Hit(shape Geometry) {
 	if rect, ok := shape.(*Rectangle); ok { // we are moving a rectangle.
 		rect.Bounds.Min.X += vector.X
 		rect.Bounds.Min.Y += vector.Y

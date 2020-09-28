@@ -9,17 +9,27 @@ import (
 // ShapeComparison is the result of running Shape.Compare().
 // It provides information about the relative position of 2 rectangles
 type ShapeComparison struct {
-	Higher   bool // is shape1 above shape0
-	Lower    bool // is shape1 below shape0
-	Right    bool // is shape1 to the right of shape0
-	Left     bool // is shape1 to the left of shape0
-	Overlaps bool // does shape1 overlap shape0
+	Higher   bool // is shape1 above shape0?
+	Lower    bool // is shape1 below shape0?
+	Right    bool // is shape1 to the right of shape0?
+	Left     bool // is shape1 to the left of shape0?
+	Overlaps bool // does shape1 overlap shape0?
 }
 
-// Shape is an interface for geometry and rendering
-type Shape interface {
-	Draw(draw.Image) // draw a shape on a given image
-	Compare(Shape) ShapeComparison
+// Shape = Geometry + Flooof
+type Shape struct {
+	Geometry
+}
+
+// GetShape() is used to get the geometry of a shape
+func (shape Shape) GetShape() Geometry {
+	return shape.Geometry
+}
+
+// Geometry is an interface for rendering and trigonometry
+type Geometry interface {
+	Draw(draw.Image)                  // draw a shape on a given image
+	Compare(Geometry) ShapeComparison // compare with another shape
 }
 
 // Rectangle Shape = Color +
@@ -58,7 +68,7 @@ func (rectangle Rectangle) Draw(frame draw.Image) {
 }
 
 // Compare() satifies the Compare method on interface Shape
-func (rectangle Rectangle) Compare(shape Shape) ShapeComparison {
+func (rectangle Rectangle) Compare(shape Geometry) ShapeComparison {
 	// store a ShapeComparison to write results to
 	var result ShapeComparison
 	// are we comparing rectangles?
@@ -84,7 +94,7 @@ func (point Point) Draw(frame draw.Image) {
 }
 
 // Compare() satisfies the Compare method on interface Shape
-func (point Point) Compare(shape Shape) ShapeComparison {
+func (point Point) Compare(shape Geometry) ShapeComparison {
 	// store a ShapeComparison to write results to
 	var result ShapeComparison
 	// are we processing a point?

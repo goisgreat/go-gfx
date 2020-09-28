@@ -8,9 +8,7 @@ type StaticShape struct {
 }
 
 // Update() satisfies the Update method on Sprite interface
-func (staticShape *StaticShape) Update() Shape {
-	return staticShape.Shape
-}
+func (staticShape *StaticShape) Update() {}
 
 // Init() satisfies a the Init method on Sprite interface.
 // Please invoke this upon creating a StaticShape
