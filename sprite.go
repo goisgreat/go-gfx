@@ -7,11 +7,11 @@ type Sprites []Sprite
 
 // Sprite is an interface for all actions relating to a game object
 type Sprite interface {
-	Update()                                // update sprite and return a new shape
-	GetShape() Geometry                     // get a sprite's shape
-	Draw(draw.Image)                        // draw a sprite on a given image
-	Init()                                  // initialize a sprite
-	Process(Geometry, ShapeComparison) bool // process shape and return boolean value indicating a collision
+	Update()                           // update sprite and return a new shape
+	GetShape() Geometry                // get a sprite's shape
+	Draw(draw.Image)                   // draw a sprite on a given image
+	Init()                             // initialize a sprite
+	Process(Geometry, ShapeComparison) // process shape and return boolean value indicating a collision
 }
 
 // Init() initializes all sprites in a set

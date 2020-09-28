@@ -7,11 +7,11 @@ type ControllableShape struct {
 }
 
 // CreateControllableShape() is a helper function for instantiating ControllableShape objects
-func CreateControllableShape(shape Shape, keyboardController KeyboardController) ControllableShape {
+func CreateControllableShape(shape Geometry, keyboardController KeyboardController) ControllableShape {
 	// create a new ControllableShape and return it
 	return ControllableShape{
-		StaticShape:        CreateStaticShape(shape), // with a StaticShape derived from given shape
-		KeyboardController: keyboardController,       // ...and the given KeyboardController
+		StaticShape:        CreateStaticShape(Shape{shape}), // with a StaticShape derived from given shape
+		KeyboardController: keyboardController,              // ...and the given KeyboardController
 	}
 }
 
