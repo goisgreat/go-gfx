@@ -4,7 +4,7 @@ import "image/draw"
 
 var (
 	// define a list of sprites for general-purpse use
-	Spritelist Sprites
+	Spritelist []Sprite
 )
 
 // Sprites is a list of sprites
