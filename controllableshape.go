@@ -10,8 +10,8 @@ type ControllableShape struct {
 func CreateControllableShape(shape Geometry, keyboardController KeyboardController) ControllableShape {
 	// create a new ControllableShape and return it
 	return ControllableShape{
-		StaticShape:        CreateStaticShape(Shape{shape}), // with a StaticShape derived from given shape
-		KeyboardController: keyboardController,              // ...and the given KeyboardController
+		StaticShape:        CreateStaticShape(shape), // with a StaticShape derived from given shape
+		KeyboardController: keyboardController,       // ...and the given KeyboardController
 	}
 }
 
