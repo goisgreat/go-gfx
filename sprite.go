@@ -17,9 +17,9 @@ type Sprite interface {
 // Init() initializes all sprites in a set
 func (sprites Sprites) Init() {
 	// iterate sprites in set
-	for idx := range sprites {
+	for _, sprite := range sprites {
 		// initialize current sprite
-		sprites[idx].Init()
+		sprite.Init()
 	}
 }
 
@@ -58,8 +58,8 @@ func (sprites Sprites) Update() {
 // Draw() draws ALL sprites in set on a given frame
 func (sprites Sprites) Draw(image draw.Image) {
 	// iterate sprites in set
-	for idx := range sprites {
+	for _, sprite := range sprites {
 		// draw current sprite on frame
-		sprites[idx].Draw(image)
+		sprite.Draw(image)
 	}
 }

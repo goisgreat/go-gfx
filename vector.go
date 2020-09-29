@@ -17,8 +17,8 @@ func (vector Vector) Hit(shape Geometry) {
 		rect.Bounds.Max.X += vector.X
 		rect.Bounds.Max.Y += vector.Y
 		return
-	} else { // we are moving an unknown shape and we freak out.
-		println("Moving unknown shape")
-		os.Exit(1)
 	}
+	// we are moving an unknown shape and we freak out.
+	println("Moving unknown shape")
+	os.Exit(1)
 }
