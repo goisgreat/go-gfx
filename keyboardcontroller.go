@@ -29,16 +29,6 @@ type KeyboardController struct {
 	OnKeyboardControl func(KeyboardControl) // invoked when keyboard control hit
 }
 
-// CreateWASDKeyboardController() is a helper function for instantiating `KeyboardController`s with a WASD control scheme.
-// [input] should be a channel of ascii keyboard input (`rune`s must be converted to `byte`s)
-func CreateWASDKeyboardController(input chan byte) KeyboardController {
-	// create a new WASD KeyboardController and return it
-	return KeyboardController{
-		Input:       input, // with the given keyboard control stream...
-		KeyboardMap: WASD,  // ...and a WASD keyboard control scheme
-	}
-}
-
 // DirectPositionControl() yields the user direct control over their position
 func DirectPositionControl(shape Geometry, delay time.Duration) func(KeyboardControl) {
 	return func(control KeyboardControl) {
@@ -80,5 +70,38 @@ func (keyboardController KeyboardController) Init() {
 		if control, ok := charmap[char]; ok && keyboardController.OnKeyboardControl != nil {
 			keyboardController.OnKeyboardControl(control)
 		}
+	}
+}
+
+// KeyboardControllerConfigOption is an alias for uint8 and is equivilant to uint8 in all ways.
+// It is used to distinguish integer values from configuration options for a KeyboardControllerConfig.
+type KeyboardControllerConfigOption uint8
+
+// KeyboardControllerConfig provides a shorthand syntax for instantiating KeyboardControllers.
+type KeyboardControllerConfig struct {
+	Input    chan byte                      // channel to get keyboard input from
+	Geometry                                // shape to control
+	Config   KeyboardControllerConfigOption // configuration option
+}
+
+// Init() Initializes a KeyboardControllerConfig and returns a KeyboardController
+func (keyboardControllerConfig KeyboardControllerConfig) Init() KeyboardController {
+	// declare parameters to put in result
+	var keyboardMap KeyboardMap
+	var onKeyboardControl func(KeyboardControl)
+
+	// decide what to do based on config option
+	switch keyboardControllerConfig.Config {
+	case DIRECT_WASD:
+		// direct WASD setup
+		keyboardMap = WASD
+		onKeyboardControl = DirectPositionControl(keyboardControllerConfig.Geometry, time.Millisecond*5)
+	}
+
+	// create a KeyboardController object and return it
+	return KeyboardController{
+		Input:             keyboardControllerConfig.Input,
+		KeyboardMap:       keyboardMap,
+		OnKeyboardControl: onKeyboardControl,
 	}
 }

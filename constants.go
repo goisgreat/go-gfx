@@ -7,3 +7,8 @@ const (
 	CON_DOWN
 	CON_RIGHT
 )
+
+// ENUM: KeyboardControllerConfig options
+const (
+	DIRECT_WASD KeyboardControllerConfigOption = iota
+)
