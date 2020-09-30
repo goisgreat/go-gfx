@@ -1,6 +1,10 @@
 package physics
 
-import "image/draw"
+import (
+	"image/draw"
+
+	"github.com/goisgreat/go-physics"
+)
 
 var (
 	// define a list of sprites for general-purpse use
@@ -67,4 +71,14 @@ func (sprites Sprites) Draw(image draw.Image) {
 		// draw current sprite on frame
 		sprite.Draw(image)
 	}
+}
+
+// Spawn() spawns the sprite derived from a given script
+func Spawn(script func() physics.Sprite) {
+	// invoke script, recieving sprite interface
+	sprite := script()
+	// initialize sprite
+	sprite.Init()
+	// append sprite to sprite list
+	physics.Spritelist = append(physics.Spritelist, sprite)
 }
