@@ -2,8 +2,6 @@ package physics
 
 import (
 	"image/draw"
-
-	"github.com/goisgreat/go-physics"
 )
 
 var (
@@ -74,11 +72,11 @@ func (sprites Sprites) Draw(image draw.Image) {
 }
 
 // Spawn() spawns the sprite derived from a given script
-func Spawn(script func() physics.Sprite) {
+func Spawn(script func() Sprite) {
 	// invoke script, recieving sprite interface
 	sprite := script()
 	// initialize sprite
 	sprite.Init()
 	// append sprite to sprite list
-	physics.Spritelist = append(physics.Spritelist, sprite)
+	Spritelist = append(Spritelist, sprite)
 }
