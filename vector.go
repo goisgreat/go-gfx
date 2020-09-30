@@ -9,7 +9,7 @@ import (
 // It is used to distinguish vectors from points on the screen
 type Vector image.Point
 
-// Hit() moves [shape] using the X/Y coordinates from a vector
+// Hit() moves [shape] using the X/Y coordinates from a vector.
 func (vector Vector) Hit(shape Geometry) {
 	if rect, ok := shape.(*Rectangle); ok { // we are moving a rectangle.
 		rect.Bounds.Min.X += vector.X

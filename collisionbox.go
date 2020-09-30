@@ -2,7 +2,7 @@ package physics
 
 import "fmt"
 
-// CollisionBox is an object for collision handling
+// CollisionBox is the component responsible for collision handling.
 type CollisionBox struct {
 	OnCollision func(Geometry, ShapeComparison) // What do I do when a collision occures?
 	Shape                                       // what shape do I use to check collisions with?

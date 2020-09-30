@@ -1,12 +1,12 @@
 package physics
 
-// ControllableShape = StaticShape + KeyboardContoller
+// ControllableShape Sprite = StaticShape + KeyboardContoller.
 type ControllableShape struct {
 	StaticShape        // static shape base
 	KeyboardController // extra keyboard controller component
 }
 
-// CreateControllableShape() is a helper function for instantiating ControllableShape objects
+// CreateControllableShape() is a helper function for instantiating ControllableShape objects.
 func CreateControllableShape(shape Geometry, keyboardController KeyboardController, collisionBox CollisionBox) ControllableShape {
 	// create a new ControllableShape and return it
 	return ControllableShape{
@@ -15,8 +15,7 @@ func CreateControllableShape(shape Geometry, keyboardController KeyboardControll
 	}
 }
 
-// Init() satisfies the Init method on interface Sprite
-// please call Init() upon creating a ControllableShape
+// Init() satisfies the Init method on interface Sprite.
 func (controllableShape ControllableShape) Init() {
 	// initialize static shape
 	controllableShape.StaticShape.Init()

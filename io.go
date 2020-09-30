@@ -4,7 +4,7 @@ import (
 	"os"
 )
 
-// CreateStdinReader() returns a stdin reader that reports the character that was just pressed and any errors
+// CreateStdinReader() returns a stdin reader that reports the character that was just pressed and any errors.
 func CreateStdinReader() func() (byte, error) {
 	// store a list of bytes
 	var bytes []byte = make([]byte, 1)

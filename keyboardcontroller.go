@@ -14,7 +14,7 @@ type KeyboardMap struct {
 	KEY_RIGHT byte // ascii character for key right
 }
 
-// wasd controll scheme
+// WASD controll scheme
 var WASD = KeyboardMap{
 	119, // w
 	97,  // a
@@ -22,14 +22,15 @@ var WASD = KeyboardMap{
 	100, // d
 }
 
-// keyboard controller component
+// KeyboardController is a component for handling keyboard input
 type KeyboardController struct {
 	Input             chan byte             // where to get input from
 	KeyboardMap                             // control scheme
 	OnKeyboardControl func(KeyboardControl) // invoked when keyboard control hit
 }
 
-// DirectPositionControl() yields the user direct control over their position
+// DirectPositionControl() yields the user direct control over their position.
+// Usage: `[sprite].KeyboardController.OnKeyboardControl = DirectPositionControl(...)``
 func DirectPositionControl(shape Geometry, delay time.Duration) func(KeyboardControl) {
 	return func(control KeyboardControl) {
 		// decide what to do based on the control presed
@@ -52,8 +53,8 @@ func DirectPositionControl(shape Geometry, delay time.Duration) func(KeyboardCon
 	}
 }
 
-// Init() initializes a KeyboardController
-// please call Init() upon creating a KeyboardController
+// Init() initializes a KeyboardController.
+// Please call Init() upon creating a KeyboardController.
 func (keyboardController KeyboardController) Init() {
 	// maps character to CON_UP, CON_DOWN, etc.
 	charmap := map[byte]KeyboardControl{
@@ -77,14 +78,14 @@ func (keyboardController KeyboardController) Init() {
 // It is used to distinguish integer values from configuration options for a KeyboardControllerConfig.
 type KeyboardControllerConfigOption uint8
 
-// KeyboardControllerConfig provides a shorthand syntax for instantiating KeyboardControllers.
+// `KeyboardControllerConfig` provides a shorthand syntax for instantiating `KeyboardController`s.
 type KeyboardControllerConfig struct {
 	Input    chan byte                      // channel to get keyboard input from
 	Geometry                                // shape to control
 	Config   KeyboardControllerConfigOption // configuration option
 }
 
-// Init() Initializes a KeyboardControllerConfig and returns a KeyboardController
+// Init() Initializes a `KeyboardControllerConfig` and returns a `KeyboardController`.
 func (keyboardControllerConfig KeyboardControllerConfig) Init() KeyboardController {
 	// declare parameters to put in result
 	var keyboardMap KeyboardMap

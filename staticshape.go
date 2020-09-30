@@ -7,16 +7,16 @@ type StaticShape struct {
 	CollisionBox
 }
 
-// Update() satisfies the Update method on Sprite interface
+// Update() satisfies the Update method on Sprite interface.
 func (staticShape *StaticShape) Update() {}
 
 // Init() satisfies a the Init method on Sprite interface.
-// Please invoke this upon creating a StaticShape
+// Please invoke Init() upon creating a StaticShape.
 func (staticShape *StaticShape) Init() {
 	staticShape.CollisionBox.Shape = staticShape.Shape
 }
 
-// CreateStaticShape() is a helper function for instantiating `StaticShape`s
+// CreateStaticShape() is a helper function for instantiating `StaticShape`s.
 func CreateStaticShape(shape Geometry, collisionBox CollisionBox) StaticShape {
 	// store a new StaticShape
 	sprite := StaticShape{

@@ -21,7 +21,7 @@ type Sprite interface {
 	Process(Geometry, ShapeComparison) // process shape and return boolean value indicating a collision
 }
 
-// Init() initializes all sprites in a set
+// Init() initializes all sprites in a set.
 func (sprites Sprites) Init() {
 	// iterate sprites in set
 	for _, sprite := range sprites {
@@ -30,7 +30,7 @@ func (sprites Sprites) Init() {
 	}
 }
 
-// Update() updates ALL sprites in a set
+// Update() updates ALL sprites in a set.
 func (sprites Sprites) Update() {
 	// create a list of positions (for collision detection)
 	shapes := []Geometry{}
@@ -62,7 +62,7 @@ func (sprites Sprites) Update() {
 	}
 }
 
-// Draw() draws ALL sprites in set on a given frame
+// Draw() draws ALL sprites in set on a given frame.
 func (sprites Sprites) Draw(image draw.Image) {
 	// iterate sprites in set
 	for _, sprite := range sprites {
@@ -71,7 +71,7 @@ func (sprites Sprites) Draw(image draw.Image) {
 	}
 }
 
-// Spawn() spawns the sprite derived from a given script
+// Spawn() spawns the sprite derived from a given script.
 func Spawn(script func() Sprite) {
 	// invoke script, recieving sprite interface
 	sprite := script()

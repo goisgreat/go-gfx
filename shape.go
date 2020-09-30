@@ -7,7 +7,7 @@ import (
 )
 
 // ShapeComparison is the result of running Shape.Compare().
-// It provides information about the relative position of 2 rectangles
+// It provides information about the relative position of two shapes.
 type ShapeComparison struct {
 	Higher   bool // is shape1 above shape0?
 	Lower    bool // is shape1 below shape0?
@@ -16,7 +16,7 @@ type ShapeComparison struct {
 	Overlaps bool // does shape1 overlap shape0?
 }
 
-// Shape = Geometry + Flooof
+// Shape represents the shape component and has an embedded Geometry interface
 type Shape struct {
 	Geometry
 }
