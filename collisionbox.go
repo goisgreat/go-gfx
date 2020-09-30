@@ -1,5 +1,7 @@
 package physics
 
+import "fmt"
+
 // CollisionBox is an object for collision handling
 type CollisionBox struct {
 	OnCollision func(Geometry, ShapeComparison) // What do I do when a collision occures?
@@ -33,7 +35,7 @@ func (collisionBoxConfig CollisionBoxConfig) Init() CollisionBox {
 	switch collisionBoxConfig.Config {
 	case RIGID_BODY:
 		box.OnCollision = func(shape Geometry, comparison ShapeComparison) {
-			println(comparison)
+			fmt.Printf("%#v\n", comparison)
 		}
 	}
 
