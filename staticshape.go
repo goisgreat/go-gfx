@@ -17,12 +17,12 @@ func (staticShape *StaticShape) Init() {
 }
 
 // CreateStaticShape() is a helper function for instantiating `StaticShape`s
-func CreateStaticShape(shape Geometry) StaticShape {
+func CreateStaticShape(shape Geometry, collisionBox CollisionBox) StaticShape {
 	// store a new StaticShape
 	sprite := StaticShape{
-		Vector{0, 0},   // use a null vector...
-		Shape{shape},   // ...a shape component derived from the given shape
-		CollisionBox{}, // ...and an empty collision box
+		Vector{0, 0}, // use a null vector...
+		Shape{shape}, // ...a shape component derived from the given shape
+		collisionBox, // ...and the given collision box
 	}
 	// initialize it
 	sprite.Init()
