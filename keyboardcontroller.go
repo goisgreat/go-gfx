@@ -51,23 +51,27 @@ func (keyboardController KeyboardController) Init() {
 }
 
 // DirectWASDKeyboardController() provides a default handler for keyboard events.
-func DirectWASDKeyboardController(input chan byte, shape Geometry, delay time.Duration) KeyboardController {
+func DirectKeyboardController(scheme KeyboardMap, input chan byte, shape Geometry, delay time.Duration) KeyboardController {
 	return KeyboardController{
+		// use the given keyboard input channel for control registration
+		Input: input,
+		// use a given control scheme
 		KeyboardMap: WASD,
+		// map keypresses directly to position
 		OnKeyboardControl: func(control KeyboardControl) {
 			// decide what to do based on the control presed
 			switch control {
 			case CON_UP:
-				// move shape up
+				// move shape up 1
 				Vector{0, -1}.Hit(shape)
 			case CON_LEFT:
-				// move shape left
+				// move shape left 1
 				Vector{-1, 0}.Hit(shape)
 			case CON_DOWN:
-				// move shape down
+				// move shape down 1
 				Vector{0, 1}.Hit(shape)
 			case CON_RIGHT:
-				// move shape right
+				// move shape right 1
 				Vector{1, 0}.Hit(shape)
 			}
 			// delay
