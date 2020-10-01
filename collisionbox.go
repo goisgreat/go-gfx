@@ -1,6 +1,6 @@
 package physics
 
-import "fmt"
+import "os"
 
 // CollisionBox is the component responsible for collision handling.
 type CollisionBox struct {
@@ -17,28 +17,15 @@ func (collisionbox CollisionBox) Process(shape Geometry, comparison ShapeCompari
 	}
 }
 
-// CollisionBoxConfigOption is an alias to uint8 and is equivilant to uint8 in all ways.
-// It is used to distinguish between integer values and configuration options for a CollisionBoxConfig.
-type CollisionBoxConfigOption uint8
-
-// CollisionBoxConfig is a helper struct for instantiating CollisionBox objects.
-type CollisionBoxConfig struct {
-	Config CollisionBoxConfigOption
-}
-
-// Init() creates, and returns, a CollisionBox based off info stored in the CollisionBoxConfig.
-func (collisionBoxConfig CollisionBoxConfig) Init() CollisionBox {
-	// create a CollisionBox
-	box := CollisionBox{}
-
-	// decide what to do based off of collisionBoxConfig.Config
-	switch collisionBoxConfig.Config {
-	case RIGID_BODY:
-		box.OnCollision = func(shape Geometry, comparison ShapeComparison) {
-			fmt.Printf("%#v\n", comparison)
-		}
+// CreateRigidBody() provides a default functionality for basic 2d collisoin physics.
+func CreateRigidBody(shape Geometry) CollisionBox {
+	return CollisionBox{
+		// oncollision callback
+		OnCollision: func(shape Geometry, comparison ShapeComparison) {
+			println("collision!")
+			os.Exit(0)
+		},
+		// derive shape component from given shape
+		Shape: Shape{shape},
 	}
-
-	// return CollisionBox created earlier
-	return box
 }

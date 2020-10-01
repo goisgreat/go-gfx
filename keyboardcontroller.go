@@ -29,30 +29,6 @@ type KeyboardController struct {
 	OnKeyboardControl func(KeyboardControl) // invoked when keyboard control hit
 }
 
-// DirectPositionControl() yields the user direct control over their position.
-// Usage: `[sprite].KeyboardController.OnKeyboardControl = DirectPositionControl(...)``
-func DirectPositionControl(shape Geometry, delay time.Duration) func(KeyboardControl) {
-	return func(control KeyboardControl) {
-		// decide what to do based on the control presed
-		switch control {
-		case CON_UP:
-			// move shape up
-			Vector{0, -1}.Hit(shape)
-		case CON_LEFT:
-			// move shape left
-			Vector{-1, 0}.Hit(shape)
-		case CON_DOWN:
-			// move shape down
-			Vector{0, 1}.Hit(shape)
-		case CON_RIGHT:
-			// move shape right
-			Vector{1, 0}.Hit(shape)
-		}
-		// delay
-		time.Sleep(delay)
-	}
-}
-
 // Init() initializes a KeyboardController.
 // Please call Init() upon creating a KeyboardController.
 func (keyboardController KeyboardController) Init() {
@@ -74,35 +50,28 @@ func (keyboardController KeyboardController) Init() {
 	}
 }
 
-// KeyboardControllerConfigOption is an alias for uint8 and is equivilant to uint8 in all ways.
-// It is used to distinguish integer values from configuration options for a KeyboardControllerConfig.
-type KeyboardControllerConfigOption uint8
-
-// `KeyboardControllerConfig` provides a shorthand syntax for instantiating `KeyboardController`s.
-type KeyboardControllerConfig struct {
-	Input    chan byte                      // channel to get keyboard input from
-	Geometry                                // shape to control
-	Config   KeyboardControllerConfigOption // configuration option
-}
-
-// Init() Initializes a `KeyboardControllerConfig` and returns a `KeyboardController`.
-func (keyboardControllerConfig KeyboardControllerConfig) Init() KeyboardController {
-	// declare parameters to put in result
-	var keyboardMap KeyboardMap
-	var onKeyboardControl func(KeyboardControl)
-
-	// decide what to do based on config option
-	switch keyboardControllerConfig.Config {
-	case DIRECT_WASD:
-		// direct WASD setup
-		keyboardMap = WASD
-		onKeyboardControl = DirectPositionControl(keyboardControllerConfig.Geometry, time.Millisecond*5)
-	}
-
-	// create a KeyboardController object and return it
+// DirectWASDKeyboardController() provides a default handler for keyboard events.
+func DirectWASDKeyboardController(input chan byte, shape Geometry, delay time.Duration) KeyboardController {
 	return KeyboardController{
-		Input:             keyboardControllerConfig.Input,
-		KeyboardMap:       keyboardMap,
-		OnKeyboardControl: onKeyboardControl,
+		KeyboardMap: WASD,
+		OnKeyboardControl: func(control KeyboardControl) {
+			// decide what to do based on the control presed
+			switch control {
+			case CON_UP:
+				// move shape up
+				Vector{0, -1}.Hit(shape)
+			case CON_LEFT:
+				// move shape left
+				Vector{-1, 0}.Hit(shape)
+			case CON_DOWN:
+				// move shape down
+				Vector{0, 1}.Hit(shape)
+			case CON_RIGHT:
+				// move shape right
+				Vector{1, 0}.Hit(shape)
+			}
+			// delay
+			time.Sleep(delay)
+		},
 	}
 }
